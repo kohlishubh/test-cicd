@@ -20,4 +20,8 @@ jobs:
           echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
           sudo apt update && sudo apt install yarn
           yarn --version
+      - name: Install pm2
+        run: |
+          yarn global add pm2
+          pm2 start ${{ secrets.file.js }} -n ${{ secrets.name }} --node-args="--max_old_space_size=8192"
         

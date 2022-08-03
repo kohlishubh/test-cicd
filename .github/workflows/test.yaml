@@ -9,8 +9,15 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
-      - name: Use Node.js
+      - name: Installing Node.js
         run: |
           curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
           sudo apt install nodejs
           node -v
+      - name: Installing yarn
+        run: |
+          curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+          sudo apt update && sudo apt install yarn
+          yarn --version
+        

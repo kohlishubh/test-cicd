@@ -1,0 +1,16 @@
+name: testing to deploy nodejs app on server
+on:
+  push:
+    branches: [ main ]
+  
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout the files
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        run: |
+          curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+          source ~/.profile
+          nvm install 16.15.1
